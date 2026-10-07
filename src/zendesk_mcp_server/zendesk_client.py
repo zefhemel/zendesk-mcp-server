@@ -116,7 +116,8 @@ class ZendeskClient:
                 'updated_at': str(ticket.updated_at),
                 'requester_id': ticket.requester_id,
                 'assignee_id': ticket.assignee_id,
-                'organization_id': ticket.organization_id
+                'organization_id': ticket.organization_id,
+                'tags': list(ticket.tags or [])
             }
         except Exception as e:
             raise Exception(f"Failed to get ticket {ticket_id}: {str(e)}")
@@ -296,7 +297,8 @@ class ZendeskClient:
                     'created_at': ticket.get('created_at'),
                     'updated_at': ticket.get('updated_at'),
                     'requester_id': ticket.get('requester_id'),
-                    'assignee_id': ticket.get('assignee_id')
+                    'assignee_id': ticket.get('assignee_id'),
+                    'tags': ticket.get('tags') or []
                 })
 
             return {
